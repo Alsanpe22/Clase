@@ -1,0 +1,68 @@
+#include <iostream>
+
+using namespace std;
+
+class Estacion{
+public:
+    Estacion(string _nombre, int _x, int _y){  //x e y son coordenadas en el plano.
+        nombre = _nombre;
+        x = _x;
+        y = _y;
+        next = nullptr;
+
+}
+
+    void addNext(Estacion * siguiente){
+        next = siguiente;
+    }
+
+    void addNext(string nombre, int x, int y){
+        next = new Estacion{nombre, x, y};
+    }
+
+    bool hasNext(){
+        if(next != nullptr) return true;
+        else return false;
+    }
+
+    void print(Estacion * primera, string nombre){
+        
+        
+    }
+    
+  Estacion * next;
+  string nombre;
+  int x;
+  int y;
+
+
+  };
+
+
+
+
+
+int main()
+{
+    Estacion * primera = new Estacion{"VALDEBERNARDO", 4,2};
+
+    Estacion * ultima{primera};
+
+
+
+
+    for ( int i{0}; i<9; i++){
+        cout << "Mete el nombre ";
+        string nombre;
+        cin >> nombre;
+        ultima->addNext(nombre, 0,0);
+        ultima = ultima->next;
+
+    }
+
+    Estacion * estacion{primera};
+    while(estacion->hasNext()){
+        cout << estacion->nombre;
+        estacion = estacion ->next;
+    }
+
