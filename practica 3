@@ -1,0 +1,94 @@
+#include <iostream>
+
+#include <vector>
+
+using namespace std;
+
+class Evento{
+public:
+    Evento(int _dia, int _mes, int _anio, string _des){
+        
+        bool bisiesto = false;
+        
+        bisiesto = (_anio%4 == 0 && (_anio%100 != 0 || _anio%400 == 0));//segun google
+        
+        if(( _dia < 0 || _dia > 31) || ( _mes < 0 || _mes > 12) || ( _anio <= 0)){
+            throw string{"Error"};
+        }
+        
+        if((_mes==2 || _mes==4 || _mes==6 || _mes==9 || _mes ==11) && (_dia >30)){
+            throw string{"Error"};
+        }
+        
+        if((_mes == 2) && (_dia>=30) && bisiesto){
+            throw string{"Error"};
+        }
+        
+        if(_mes == 2 && (_dia>29) && !bisiesto){
+            throw string{"Error"};
+        }
+        
+        dia = _dia;
+        mes = _mes;
+        anio = _anio;
+        des = _des;
+        
+    }
+    
+    bool isDate(int _dia, int _mes, int _anio){
+        
+        return !(dia != _dia || mes !=_mes || anio != _anio);
+        
+    }
+    
+    
+    string getdesc(){
+        return des;
+    }
+    
+    void printEvento(){
+        cout << dia << " del " << mes << " del " << anio <<endl;
+        cout << des << endl;
+        
+    }
+    
+    
+    
+    
+private:
+    int dia, mes, anio;
+    string des;
+    
+};
+
+class Agenda{
+public:
+    Agenda(){}
+    
+    vector<Evento> findByDate(int d, int m, int a){
+        vector<Evento> resultado;
+        
+        for(auto e: leven){
+            if(e.isDate(d,m,a)) resultado.push_back(e);
+        }
+        
+        return resultado;
+    }
+    
+    Agenda addEvento(Evento v){
+        leven.push_back(v);
+    }
+    
+    
+    
+private:
+    vector<Evento> leven;
+    int _dia;
+    int _mes;
+    int _anio;
+};
+
+int main()
+{
+    return 0;
+}
