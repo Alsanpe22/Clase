@@ -1,0 +1,71 @@
+#include <stdlib.h>
+#include <time.h>
+#include <iostream>
+#include <array>
+#include <vector>
+
+
+using namespace std;
+
+class Bolsa{
+    public:
+        Bolsa(){}
+
+  private:
+     array<int,20> bolas;
+};
+
+
+
+int main()
+{
+  int j1,j2,b1,b2;
+
+    cout << "Jugador 1, cuanto quiere apostar" << endl;
+    cin >> b1;
+    if(b1<0 || b1>50){throw string {"No es posible"};
+    
+    }
+    cout << "Jugador 2, cuanto quiere apostar" << endl;
+    cin >> b2;
+    if(b1<0 || b1>50){throw string {"No es posible"};
+        
+    }
+
+    cout <<"Jugador 1 cuantas bolas quiere sacar?   ";
+    cin >>b1;
+           
+    int num, c;
+    srand(time(NULL));
+    
+    for(c = 1; c <= b1; c++)
+    {
+        num = 1 + rand() % (21 - 1);
+        num != num;
+        cout << num<< " " <<endl;
+    }
+    
+    cout << "Jugador 2 cuantas bolas quiere sacar?   " ;
+    cin >> b2;
+    
+    int num1, c1;
+    srand(time(NULL));
+    
+    for(c1 = 1; c1 <= b2; c1++)
+    {
+        num1 = 1 + rand() % (21 - 1);
+        num1 != num1;
+        cout << num1<< " " << endl;
+    }
+    int suma = num;
+    cout << "Tu puntuacion es de : (J1)" << suma <<endl;
+    int suma1 = num1;
+    cout <<"Tu puntuacion es de : (J2)" <<suma1 <<endl;
+ 
+    
+    
+array<int,20>  bolas = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+    return 0;
+}
+
+
