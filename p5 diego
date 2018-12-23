@@ -1,0 +1,168 @@
+#include <iostream>
+#include <ctime>
+#include <stdlib.h>
+#include <time.h>
+#include <vector>
+
+using namespace std;
+
+class Jugador
+{
+public:
+    Jugador(int _nA,int _pA,string _ps)
+    {
+       nA = _nA;
+       pA = _pA;
+       ps = _ps;
+    }
+
+    int getNumeroApuesta()
+    {
+        return nA;
+    }
+
+        void setNumeroApuesta(int _nA1)
+        {
+            nA = _nA1;
+        }
+
+    int getPuntosAcumulados()
+    {
+        return pA;
+    }
+
+        void setPuntosAcumulados(int _pA1)
+        {
+            pA = _pA1;
+        }
+
+    string getPlantadoSi()
+    {
+        return ps;
+    }
+
+        void setPlantadoSi(string _ps1)
+        {
+            ps = _ps1;
+        }
+
+    bool plantado()
+    {
+        if(ps == "s")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    int getDiferencia()
+    {
+        unsigned short int di;
+        di = nA - pA;
+        return di;
+    }
+
+private:
+        int nA, pA;
+        string ps;
+
+};
+
+class Bolsa
+{
+public:
+
+    int sacarBolsa()
+    {
+        num = rand()%bolsa.size();
+        i = num;
+        num = bolsa.at(num);
+        bolsa.erase (bolsa.begin()+i);
+        return num;
+    }
+
+    bool quedanBolas()
+    {
+        if (bolsa.size() == 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+private:
+    vector <int> bolsa { 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10 , 11 , 12 , 13 , 14 , 15 , 16 , 17 , 18 , 19 , 20 };
+    int num;
+    int i;
+};
+
+void ganador(int a, int b)
+{
+    if (a > b)
+    {
+        cout << "Ha ganado el Jugador2 ";
+    }
+
+    if (a < b)
+    {
+        cout << "Ha ganado el Jugador1 ";
+    }
+
+    if (a == b)
+    {
+        cout << "Han empatado LOL ";
+    }
+}
+
+int main()
+{
+    srand(time(NULL));
+
+    Bolsa miBolsa;
+
+    int numero_apostado = 0;
+    int puntos_acumulados = 0;
+    string plantado_si = "n";
+    Jugador Jugador1(numero_apostado, puntos_acumulados, plantado_si);
+    Jugador Jugador2(numero_apostado, puntos_acumulados, plantado_si);
+
+    cout << "A que numero apuestas J1?: "; cin >> numero_apostado;
+    Jugador1.setNumeroApuesta(numero_apostado);
+    cout << "A que numero apuestas J2?: "; cin >> numero_apostado;
+    Jugador2.setNumeroApuesta(numero_apostado);
+
+    while( ( ( Jugador1.plantado() == false ) && ( Jugador2.plantado() == false ) ) && ( miBolsa.quedanBolas() == true ) )
+    {
+        cout << "gola" << endl;
+        if(Jugador1.plantado() == false)
+        {
+        cout << "Al jugador le ha salido el numero: " << miBolsa.sacarBolsa() << endl;
+        Jugador1.setPuntosAcumulados(puntos_acumulados = puntos_acumulados + miBolsa.sacarBolsa());
+        }
+
+        if(Jugador2.plantado() == false)
+        {
+        cout << "Al jugador le ha salido el numero: " << miBolsa.sacarBolsa() << endl;
+        Jugador2.setPuntosAcumulados(puntos_acumulados = puntos_acumulados + miBolsa.sacarBolsa());
+        }
+
+        if(Jugador1.plantado() == false)
+        {
+        cout << "Quieres plantarte J1?: "; cin >> plantado_si;
+        Jugador1.setPlantadoSi(plantado_si);
+        }
+
+        if(Jugador2.plantado() == false)
+        {
+        cout << "Quieres plantarte jugador2?: "; cin >> plantado_si;
+        Jugador2.setPlantadoSi(plantado_si);
+        }
+    }
+        ganador(Jugador1.getDiferencia(), Jugador2.getDiferencia());
+}
