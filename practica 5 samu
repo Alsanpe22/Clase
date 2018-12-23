@@ -1,0 +1,167 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+class Bolsa{
+public:
+
+    unsigned short int suma1=0;
+    unsigned short int suma2=0;
+    string seguir;
+    string seguir2;
+
+    void sacarBola1(){
+        cout << "j1 desea seguir: ";
+        cin >> seguir;
+        if (seguir != "s"){
+            bolaj1 = 0;
+        }else{
+
+        num = 1+rand()% (i-1);
+
+        bolaj1 = bolas.at(num);
+
+        num = num;
+        bolas.erase (bolas.begin()+num);
+
+
+        cout << "A jugador 1 le ha salido el numero: " << bolaj1 << endl;
+        suma1 = suma1 + bolaj1;
+        i--;
+        }
+    }
+
+
+    void sacarBola2(){
+        cout << "j2 desea seguir: ";
+        cin >> seguir2;
+        if(seguir2 == "s"){
+        num = 1+rand()% (i-1);
+
+        bolaj2 = bolas.at(num);
+
+        num = num;
+        bolas.erase (bolas.begin()+num);
+
+
+        cout << "A jugador 2 le ha salido el numero: " << bolaj2 << endl;
+        suma2 = suma2 + bolaj2;
+        i--;
+        }else{
+            bolaj2=0;
+        }
+    }
+
+    void quedanBolas(){
+        for(int x = 0; x <= i; x++){
+            cout << "quedan las bolas: "<<bolas.at(x);
+        }
+
+    }
+
+
+private:
+    vector<int>bolas{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+    unsigned short int num;
+    unsigned short int i = 20;
+    unsigned short int bolaj1;
+    unsigned short int bolaj2;
+
+
+
+
+};
+
+class Persona{
+public:
+    unsigned short int apuesta1;
+    unsigned short int apuesta2;
+   Bolsa bolsa();
+
+    Apuesta(){
+
+        cout << "hagan juego: ";
+        cin >> apuesta1;
+        cout << "siguiente: ";
+        cin >> apuesta2;
+
+        if(apuesta1 < 10 || apuesta1 > 50){
+            cout << "tiene que ser mayor que 10 o menor que 50"<<endl;
+            cout << "hagan juego: ";
+            cin >> apuesta1;
+            cout << "siguiente: ";
+            cin >> apuesta2;
+    }
+
+
+}
+
+private:
+
+
+
+
+
+
+};
+int difer1;
+int difer2;
+void Ganador(){
+
+    if( difer1 < 0){
+        difer1 = difer1*(-1);
+    }
+    if( difer2 < 0){
+        difer2 = difer2*(-1);
+    }
+
+    if(difer1 == difer2){
+        cout << "empate";
+    }
+
+    if(difer1 < difer2){
+        cout <<"gana jugador 1";
+    }else{
+        cout << "gana jugador 2";
+    }
+}
+
+int main()
+{
+   // int difer1;
+   // int difer2;
+    Bolsa bol;
+    Persona per;
+    per.Apuesta();
+    cout << "quiere continuar ";
+    cin>> bol.seguir;
+    while(bol.seguir == "s" || bol.seguir2== "s"){
+        bol.sacarBola1();
+        bol.sacarBola2();
+    }
+    cout << "j1 puntuacion: " << bol.suma1<<endl;
+    cout << "j2 puntuacion: " <<bol.suma2<<endl;
+
+    difer1 = bol.suma1 - per.apuesta1;
+    difer2 = bol.suma2 - per.apuesta2;
+
+    Ganador();
+   /* if( difer1 < 0){
+        difer1 = difer1*(-1);
+    }
+    if( difer2 < 0){
+        difer2 = difer2*(-1);
+    }
+
+    if(difer1 == difer2){
+        cout << "empate";
+    }
+
+    if(difer1 < difer2){
+        cout <<"gana jugador 1";
+    }else{
+        cout << "gana jugador 2";
+    }*/
+    return 0;
+}
