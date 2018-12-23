@@ -1,0 +1,112 @@
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#include <vector>
+
+
+using namespace std;
+
+int main()
+{
+    srand(time(NULL));
+
+    int bj1 = 0;
+    int bj2 = 0;
+    int apuj1 = 0;
+    int apuj2 = 0;
+    unsigned short int dife1 = 0;
+    unsigned short int dife2 = 0;
+    string reti1 = "s";
+    string reti2 = "s";
+    int num;
+    int bolaj1;
+    int bolaj2;
+    int i = 20;
+
+
+    cout << "Jugador1 a que numero apuestas?: "; cin >> apuj1;
+    cout << "Jugador2 a que numero apuestas?: "; cin >> apuj2;
+
+    vector <int> bolsa { 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10 , 11 , 12 , 13 , 14 , 15 , 16 , 17 , 18 , 19 , 20 };
+
+
+    while( ( i > 0 ) && ( ( reti1 == "s" ) || ( reti2 == "s" ) ) )
+    {
+       if (reti1 == "s")
+       {
+       num = rand()%i;
+       bolaj1 = bolsa.at(num);
+       num = num;
+       bolsa.erase (bolsa.begin()+num);
+       i = i -1;
+       cout << "A J1 le ha salido el numero: " << bolaj1 << endl;
+       }
+       else
+       {
+           bolaj1 = 0;
+       }
+
+
+       if ( reti2 == "s" )
+       {
+       num = rand()%i;
+       bolaj2 = bolsa.at(num);
+       num = num;
+       bolsa.erase (bolsa.begin()+num);
+       i = i -1;
+       cout << "A J2 le ha salido el nnmero: " << bolaj2 << endl;
+       }
+       else
+       {
+           bolaj2 = 0;
+       }
+
+       bj1 = bj1 + bolaj1;
+       bj2 = bj2 + bolaj2;
+
+       if (reti1 == "s")
+       {
+       cout << "El jugador1 lleva: " << bj1 << endl;
+       }
+
+       if (reti2 == "s")
+       {
+       cout << "El jugador2 lleva: " << bj2 << endl;
+       }
+
+       if (reti1 == "s")
+       {
+           cout << "El jugador1 quiere sacar otra bola? (s/n): "; cin >> reti1;
+       }
+
+       if (reti2 == "s")
+       {
+           cout << "El jugador2 quiere sacar otra bola? (s/n): "; cin >> reti2;
+       }
+
+    }
+
+    dife1 = bj1 - apuj1;
+    dife2 = bj2 - apuj2;
+
+    if ( ( reti1 == "s" ) || ( reti2 == "s" ) )
+    {
+        cout << "Se acabaron las bolas " << endl;
+    }
+    else
+    {
+        cout << "Los jugadores se han plantado " << endl;
+    }
+
+    if ( dife1 < dife2 )
+    {
+        cout << "Gana el j1 " << endl;
+    }
+    else
+    {
+        cout << "Gana el j2 " << endl;
+    }
+
+    cout << "Se acabo el juego, gracias por jugar";
+
+}
