@@ -1,0 +1,422 @@
+#include <iostream>
+#include <array>
+#include <vector>
+#include <fstream>
+#include <algorithm>
+using namespace std;
+
+bool no_es_numero(char c)
+{
+  return !isdigit(c);
+}
+string &extraer(string &str)
+{
+  str.resize(remove_if(str.begin(), str.end(), no_es_numero) - str.begin());
+  return str;
+}
+class Analyzer
+{
+public:
+  Analyzer (string _a)
+  {
+    aa = _a;
+  }
+  string GetMaxIncomeProject( int& _income  )
+  {
+      vector<string>help{"ProyectoA", "ProyectoB", "ProyectoC", "ProyectoD"};
+            vector<int>estoymuycansado;
+            int mas = 0;
+            int max = 0;
+
+            for (int memuero = 0;memuero < help.size();memuero++)
+            {
+                vector<int>i;
+                int noseqponer =0 ;
+                for (int e = 0;e<projects.size();e++)
+                {
+                    if(help.at(memuero)==projects.at(e))
+                    {
+                        if(incomes.at(e)>0)
+                        {
+                            i.push_back(incomes.at(e));
+                        }
+                    }
+                }
+
+                for (int ee = 0;ee<i.size();ee++)
+                {
+                    noseqponer = noseqponer + i.at(ee);
+                }
+
+                estoymuycansado.push_back(noseqponer);
+            }
+
+            for (int e = 0;e < estoymuycansado.size();e++)
+            {
+                if (estoymuycansado.at(e)>mas)
+                {
+                    mas = estoymuycansado.at(e);
+                    max = e;
+                }
+            }
+            _income = mas;
+
+            return help.at(max);
+  }
+
+  string GetMinIncomeProject( int& _income )
+  {
+      vector<string>help{"ProyectoA", "ProyectoB", "ProyectoC", "ProyectoD"};
+            vector<int>estoymuycansado;
+            int mas = 0;
+            int max = 0;
+
+            for (int memuero = 0;memuero < help.size();memuero++)
+            {
+                vector<int>i;
+                int noseqponer =0 ;
+                for (int e = 0;e<projects.size();e++)
+                {
+                    if(help.at(memuero)==projects.at(e))
+                    {
+                        if(incomes.at(e)<0)
+                        {
+                            i.push_back(incomes.at(e));
+                        }
+                    }
+                }
+
+                for (int ee = 0;ee<i.size();ee++)
+                {
+                    noseqponer = noseqponer + i.at(ee);
+                }
+
+                estoymuycansado.push_back(noseqponer);
+            }
+
+            for (int e = 0;e < estoymuycansado.size();e++)
+            {
+                if (estoymuycansado.at(e)<mas)
+                {
+                    mas = estoymuycansado.at(e);
+                    max = e;
+                }
+            }
+            _income = mas;
+
+            return help.at(max);
+  }
+
+  string GetBestMonth( int& _income )
+  {
+      vector<string>help{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto","Septiembre", "Octubre", "Noviembre","Diciembre"};
+            vector<int>estoymuycansado;
+            int mas = 0;
+            int max = 0;
+
+            for (int memuero = 0;memuero < help.size();memuero++)
+            {
+                vector<int>i;
+                int noseqponer =0 ;
+                for (int e = 0;e<mes.size();e++)
+                {
+                    if(help.at(memuero)==mes.at(e))
+                    {
+                        if(incomes.at(e)>0)
+                        {
+                            i.push_back(incomes.at(e));
+                        }
+                    }
+                }
+
+                for (int ee = 0;ee<i.size();ee++)
+                {
+                    noseqponer = noseqponer + i.at(ee);
+                }
+
+                estoymuycansado.push_back(noseqponer);
+            }
+
+            for (int e = 0;e < estoymuycansado.size();e++)
+            {
+                if (estoymuycansado.at(e)>mas)
+                {
+                    mas = estoymuycansado.at(e);
+                    max = e;
+                }
+            }
+            _income = mas;
+            w=mas;
+            return help.at(max);
+  }
+
+  string GetWorstMonth( int& _income )
+  {
+      vector<string>help{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto","Septiembre", "Octubre", "Noviembre","Diciembre"};
+            vector<int>estoymuycansado;
+            int mas = 0;
+            int max = 0;
+
+            for (int memuero = 0;memuero < help.size();memuero++)
+            {
+                vector<int>i;
+                int noseqponer =0 ;
+                for (int e = 0;e<mes.size();e++)
+                {
+                    if(help.at(memuero)==mes.at(e))
+                    {
+                        if(incomes.at(e)<0)
+                        {
+                            i.push_back(incomes.at(e));
+                        }
+                    }
+                }
+
+                for (int ee = 0;ee<i.size();ee++)
+                {
+                    noseqponer = noseqponer + i.at(ee);
+                }
+
+                estoymuycansado.push_back(noseqponer);
+            }
+
+            for (int e = 0;e < estoymuycansado.size();e++)
+            {
+                if (estoymuycansado.at(e)<mas)
+                {
+                    mas = estoymuycansado.at(e);
+                    max = e;
+                }
+            }
+            _income = mas;
+            z=mas;
+            return help.at(max);
+  }
+
+  int getAverageExpenses()
+  {   
+            int Averageicomem = 0;
+            int Averageicomeme = 0;
+            int c=0;
+             for (int e = 0;e<=incomes.size()-1;e++) {
+              if (incomes.at(e) >= 0)
+              {
+                  Averageicomem = Averageicomem + incomes.at(e);
+
+              }
+              else
+              {
+                  Averageicomeme = Averageicomeme + incomes.at(e);
+                  c++;
+              }
+
+             }
+             Averageicomeme = Averageicomeme /c;
+             Averageicomem = Averageicomem /c;
+          return Averageicomeme;
+  }
+
+  int getAverageIncome()
+  {
+      int Averageicomem = 0;
+            int Averageicomeme = 0;
+            int c=0;
+             for (int e = 0;e<=incomes.size()-1;e++) {
+              if (incomes.at(e) >= 0)
+              {
+                  Averageicomem = Averageicomem + incomes.at(e);
+                c++;
+              }
+              else
+              {
+                  Averageicomeme = Averageicomeme + incomes.at(e);
+
+              }
+
+             }
+             Averageicomeme = Averageicomeme /c;
+             Averageicomem = Averageicomem /c;
+          return Averageicomem;
+  }
+
+  int getTotalIncome()
+  {
+      int totalicomem = 0;
+            int totalicomeme = 0;
+             for (int e = 0;e<=incomes.size()-1;e++) {
+              if (incomes.at(e) >= 0)
+              {
+                  totalicomem = totalicomem + incomes.at(e);
+              }
+              else
+              {
+                  totalicomeme = totalicomeme + incomes.at(e);
+              }
+             }
+
+          return totalicomem;
+  }
+
+  int getTotalExpenses()
+  {
+      int totalicomem = 0;
+            int totalicomeme = 0;
+             for (int e = 0;e<=incomes.size()-1;e++) {
+              if (incomes.at(e) >= 0)
+              {
+                  totalicomem = totalicomem + incomes.at(e);
+              }
+              else
+              {
+                  totalicomeme = totalicomeme + incomes.at(e);
+              }
+             }
+
+          return totalicomeme;
+
+  }
+
+  void showAnalysis()
+  {
+    setVector();
+    cout << "El proyecto con mas ingresos ha sido: " << GetMaxIncomeProject(x) << endl;;
+    cout << "El proyecto con mas gastos ha sido: " << GetMinIncomeProject(y) << endl;;
+    cout << "-------------------------------------------------------------" << endl;
+    cout << "El mes con mas beneficios ha sido: " << GetBestMonth(w) << endl;
+    cout << "El mes con menos beneficios ha sido: " << GetWorstMonth(z) << endl;
+    cout << "-------------------------------------------------------------" << endl;
+    cout << "La media de gastos al mes es: " << getAverageExpenses() << endl;
+    cout << "La media de ingresos al mes: " << getAverageIncome() << endl;
+    cout << "-------------------------------------------------------------" << endl;
+    cout << "El total de gastos ha sido:  " << getTotalExpenses() << endl;
+    cout << "El total de ingresos ha sido: " << getTotalIncome() << endl;
+  }
+
+  void saveAnalysis( string _a )
+  {
+      aaa = _a;
+      ofstream ficheroSalida;
+      ficheroSalida.open (aaa.c_str(), ios::in);
+      if(ficheroSalida.is_open())
+      {
+      ficheroSalida << "El proyecto con mas ingresos ha ingresado: " << x <<endl;
+      ficheroSalida << "El proyecto con mas gastos ha gastado: " << y <<endl;
+      ficheroSalida << "El mes con mas beneficios, ha tenido: " << w <<endl;
+      ficheroSalida << "El mes con menos beneficios, ha tenido: " << z <<endl;
+      ficheroSalida.close();
+      }
+      else {
+          throw string{"ERROR.No existe ese archivo de salida. "};
+      }
+  }
+
+  void setVector()
+  {
+        string str ("-");
+          vector<string> mess {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto","Septiembre", "Octubre", "Noviembre","Diciembre"};
+          vector<string> pro {"ProyectoA","ProyectoB","ProyectoC","ProyectoD"};
+          size_t foundm=0;
+          size_t foundh=0;
+          size_t found=0;
+          int m= 0;
+          int mesess = 0;
+          int prooo = 0;
+          vector <int> a;
+          ifstream ficheroEntrada;
+          string frase;
+          ficheroEntrada.open (aa.c_str(), ios::in);
+          if(ficheroEntrada.is_open())
+          {
+            while(!ficheroEntrada.eof())
+            {
+             ficheroEntrada >> frase;
+             found = frase.find(str,found);
+             mesess = 0;
+               while(mesess<12){
+                 foundm = frase.find(mess.at(mesess),foundm);
+                  if(foundm==string::npos)
+                          {
+                          if(mesess <=11){
+                           mesess++;}
+                            foundm++;
+                           }
+                          else
+                           {
+                           mes.push_back(mess.at(mesess));
+                           mesess++;
+                       }
+           }
+               prooo = 0;
+               foundh=0;
+               while(prooo<=3){
+                 foundh = frase.find(pro.at(prooo),foundh);
+                   if(foundh==string::npos)
+                       {
+                      foundh++;
+                       if(prooo <=3){
+                           }
+                          }
+                          else
+                        {
+                      projects.push_back(pro.at(prooo));
+                       }
+                        prooo++;
+                  }
+
+               float numm= atoi(extraer(frase).c_str());
+                  numm = numm /100;
+                  incomes.push_back(numm);
+                      if(found==string::npos)
+                    {
+                    m++;
+                    found++;
+                    }
+                       else
+                      {
+                      a.push_back(m);
+                       
+                       m++;
+                       }
+                }
+
+              ficheroEntrada.close();
+            int num = a.size() - 1;
+            for (int e = 0; e <= num ;e++)
+            {
+             incomes.at(a.at(e)) = -incomes.at(a.at(e));
+            }
+
+            num = incomes.size() - 1;
+            incomes.erase (incomes.begin()+num);
+          }
+          else {
+              throw string{"Error.No existe ese archivo de entrada. "};
+          }
+  }
+private:
+    string aa;
+    string aaa;
+    int x,y,w,z;
+    vector <float>incomes;
+    vector<string>mes;
+    vector<string>projects;
+};
+
+int main(){
+        try{
+                string nombre_archivo;
+                cout << "Introduce el nombre del archivo a analizar: ";
+                cin >> nombre_archivo;
+                Analyzer myAnalyzer{nombre_archivo};
+                myAnalyzer.showAnalysis();
+
+                cout << "Introduce el nombre del archivo donde guardar los resultados: ";
+                cin >> nombre_archivo;
+                myAnalyzer.saveAnalysis(nombre_archivo);
+                cout << "Finalizado" << endl;
+        }catch(string e){
+                cout << e << endl;
+                return 1;
+        }
+        return 0;
+}
