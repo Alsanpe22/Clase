@@ -1,0 +1,128 @@
+#include <iostream>
+#include <vector>
+#include <stdlib.h>
+#include <time.h>
+using namespace std;
+
+  class Bolsa{
+  public:
+      Bolsa(){}
+      void sacarBola(){
+          int num = 1 + rand() % (21-1);
+          bola = num;
+          num = num -1;
+          bolas.erase (bolas.begin()+num);
+      }
+      bool quedanBolas(){
+          if(bolas.size()>0){
+              return true;
+          }else {
+              return false;
+            }
+      }
+      int getBola(){
+          return bola;
+      }
+
+ private:
+      vector<int>bolas{1,2,3,4,5,6,7,8,9,10,11,12,13,
+                      14,15,16,17,18,19,20};
+      int bola;
+  };
+
+  class Jugador{
+  public:
+      Jugador(int _n, int _pa, string _p){
+          n =_n;
+          pa = _pa;
+          p = _p;
+      }
+      void setN(int _n){
+          n = _n;
+      }
+      void setPA(int _pa){
+          pa = _pa;
+      }
+      void setP(string _p){
+          p = _p;
+      }
+      bool estaplantado()
+      {
+          if(p == "no"){
+              return false;
+          }else {
+              return true;
+            }
+      }
+      int getN(){
+          return n;
+      }
+      int getPA(){
+          return pa;
+      }
+  private:
+
+      int n,pa;
+      string p;
+  };
+
+int main()
+{
+    srand(time(NULL));
+
+string jugar = "si";
+
+while (jugar == "si") {
+int puntos_acumulados1 = 0;
+
+int numero_apostado = 0;
+int puntos_acumulados = 0;
+unsigned short int diferencia = 0;
+string plantado = "no";
+Bolsa miBolsa;
+Jugador jugador1(numero_apostado,puntos_acumulados,plantado);
+Jugador jugador2(numero_apostado,puntos_acumulados,plantado);
+while(numero_apostado<10 || numero_apostado >50){
+cout << "A que numero apuestas Jugador1? ";cin>>numero_apostado;
+jugador1.setN(numero_apostado);
+}
+numero_apostado = 0;
+while(numero_apostado<10 || numero_apostado >50){
+cout << "A que numero apuestas Jugador2? ";cin>>numero_apostado;
+jugador2.setN(numero_apostado);
+}
+
+while((miBolsa.quedanBolas() == true) &&
+      ((jugador1.estaplantado() == false)||(jugador2.estaplantado() == false))){
+
+miBolsa.sacarBola();
+cout << "Ha salido la bola: " << miBolsa.getBola() << endl;
+
+if (jugador1.estaplantado() == false){
+cout << "Jugador 1 te plantas?(si o no) "; cin >> plantado;
+jugador1.setPA(miBolsa.getBola()+jugador1.getPA());
+jugador1.setP(plantado);
+}
+if (jugador2.estaplantado() == false){
+cout << "Jugador 2 te plantas?(si o no) "; cin >> plantado;
+jugador2.setPA(miBolsa.getBola()+jugador2.getPA());
+jugador2.setP(plantado);
+}
+}
+
+diferencia  =  jugador1.getN() - jugador1.getPA();
+jugador1.setN(diferencia);
+diferencia  =  jugador2.getN() - jugador2.getPA();
+jugador2.setN(diferencia);
+
+if (jugador1.getN() > jugador2.getN()){
+    cout << "El jugador 2 ha ganado " << endl;
+
+
+}else {
+    cout << "El jugador 1 ha ganado " << endl;
+
+}
+cout << "Quereis jugar?(si o no) ";cin >> jugar;
+}
+}
