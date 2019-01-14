@@ -1,0 +1,161 @@
+#include <iostream>
+#include <vector>
+#include <array>
+#include <time.h>
+#include <sstream>
+#include <stdlib.h>
+
+using namespace std;
+//PARA INICIAR EL PROGRAMA ES NECESARIO METER LA CONTRASEÑA DEL MOVIL 4532
+//PARA INICIAR EL PROGRAMA ES NECESARIO METER LA CONTRASEÑA DEL MOVIL 4532
+//PARA INICIAR EL PROGRAMA ES NECESARIO METER LA CONTRASEÑA DEL MOVIL 4532
+//PARA INICIAR EL PROGRAMA ES NECESARIO METER LA CONTRASEÑA DEL MOVIL 4532
+//PARA INICIAR EL PROGRAMA ES NECESARIO METER LA CONTRASEÑA DEL MOVIL 4532
+//PARA INICIAR EL PROGRAMA ES NECESARIO METER LA CONTRASEÑA DEL MOVIL 4532
+class Agenda{
+public:
+    Agenda(){}
+    void Elegir(){
+       cout << "1-Add a contact\n2-Search a contact\n3-Quit"<<endl;
+       cin >> elegir;
+
+       if(elegir == 1){
+           getAddContact();
+
+
+       }
+
+       if(elegir == 2){
+           getSearch();
+
+       }
+
+
+       if(elegir == 3){
+           Quit();
+
+       }
+
+
+
+
+    }
+
+  
+    void getAddContact(){
+        cout << "---- Add Contact ----" << endl;
+        cout << "Please, write down the name: ";
+             cin >> name;
+
+        cout <<"Please, write down the surname: ";
+             cin >> surname;
+
+        cout <<"Please, write down the second surname: ";
+             cin >> surname2;
+
+        cout <<"Please, add the phone number: ";
+             cin >>phone;
+
+        cout <<"Please, add house number: ";
+             cin >>house;
+
+             if(phone < 000000000 || phone >999999999){
+                 cout << "Wrong number: " << endl;
+                 cout << "Please retype it: ";
+                 cin >>phone;
+             }
+             if(house < 000000000 || house >999999999){
+                 cout << "Wrong number: " << endl;
+                 cout << "Please retype it: ";
+                 cin >>house;
+             }
+
+             e << name << surname << surname2 <<"\n" <<phone<<"\n" <<house;
+             guardados.push_back(d.str());
+        cout << "Contact added: "<<name <<" "<<surname<<" "<<surname2<<" Phonenumber:  "<<phone<<" Housenumber:  "<<house <<endl;
+             Elegir();
+
+
+    }
+
+
+
+
+    void getEliminate(){
+        cout << "Are you sure?";
+
+        i=i-1;
+        guardados.erase (guardados.begin()+i);
+        Elegir();
+
+
+    }
+    void getModify(){
+
+
+        cout << "Please, write down the name: ";
+             cin >> name;
+
+        cout <<"Please, write down the surname: ";
+             cin >> surname;
+
+        cout <<"Please, write down the second surname: ";
+             cin >> surname2;
+
+        cout <<"Please, add the phone number: ";
+             cin >>phone;
+
+        cout <<"Please, add house number: ";
+             cin >>house;
+             if(phone < 000000000 || phone >999999999){
+                 cout << "Wrong number: " << endl;
+                 cout << "Please retype it: ";
+                 cin >>phone;
+             }
+             if(house < 000000000 || house >999999999){
+                 cout << "Wrong number: " << endl;
+                 cout << "Please retype it: ";
+                 cin >>house;
+             }
+            Elegir();
+    }
+
+    int Quit(){
+        cout <<"Quitting\n If you want to access again restart."<<endl;
+        return 0;
+
+    }
+
+
+
+private:
+    vector<string>contactlist;
+    vector<string>guardados;
+    stringstream d,e;
+    string name;
+    string surname,surname2;
+    int elegir;
+    int phone,house;
+    int a,j,l;
+    int cname,csurname,csurname2,cphone,chouse;
+    int i,busqueda5,busqueda4;
+};
+
+int main()
+
+{  Agenda Samsung;
+   int pass;
+
+    cout << "Put your security pin to access: #4532" <<endl;
+    cin >> pass;
+    if(pass !=4532){
+        cout << "wrong pin"<<endl;
+        return 0;
+    }
+    cout << "*------*Agenda*------*" << endl;
+    Samsung.Elegir();
+    return 0;
+
+
+}
+
