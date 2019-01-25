@@ -1,0 +1,82 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+class VectorInt{
+public:
+    VectorInt(int n){
+        data = n;
+        next = nullptr;
+    }
+    
+    int getData();
+    void setData(int paco);
+    VectorInt* Buscar(int paco);
+    void push_back(int paco);
+    bool erase(int value);
+    VectorInt * giveMeNext(){return next;}
+    bool is(int value){return data == value;}
+    
+private:
+    VectorInt* next;
+    int data;
+};
+
+int main()
+{
+    VectorInt * a = new VectorInt{1};
+    cout << a->getData() << endl;
+    a->push_back(5);
+    a->push_back(7);
+    
+    VectorInt * resultado =  a->Buscar(8);
+    if (resultado == nullptr){
+        cout << "no encontrado" << endl;
+    }else {
+        cout << "encontrado" << endl;
+    }
+}
+
+int VectorInt::getData(){
+    return data;
+}
+
+void VectorInt::setData(int paco){
+    data = paco;
+}
+
+void VectorInt::push_back(int paco){
+    if(next == nullptr){
+        VectorInt * aux = new VectorInt{paco};
+        next = aux;
+    }else {
+        next ->push_back(paco);
+    }
+}
+
+VectorInt *VectorInt::Buscar(int  paco){
+    if (data == paco){
+        return this;
+    }else if(next == nullptr){
+        return nullptr; }else {
+        return next->Buscar(paco);
+    }
+    
+}
+
+bool VectorInt::erase(int value){
+    if(next == nullptr) return false;
+    else {
+        if(next->is(value)){
+            VectorInt * aux = next->giveMeNext();
+            delete next;
+            next = aux;
+            return true;
+            
+        }else{
+            next->erase(value);
+        }
+    }
+    
+}
