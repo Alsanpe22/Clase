@@ -1,0 +1,126 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+
+class Agenda{
+public:
+    Agenda(string n, string f, string m);
+    Agenda* buscar (string n);
+    bool erase(string n);
+    bool add(string n, string f, string m);
+    bool modify(string n, string f, string m);
+       
+    
+    string getN();
+    void setN(const string &value);
+    
+    string getF();
+    void setF(const string &value);
+    
+    string getM() const;
+    void setM(const string &value);
+    
+private:
+    Agenda* next;
+    string n, f, m;
+    
+    
+    
+};
+
+
+int main()
+{
+    
+  return 0;  
+}
+
+bool Agenda::add(string n, string f, string m, bool b){
+    Agenda* aux;
+    if(b) aux = buscar(n);
+    else aux = nullptr;
+    if(aux == nullptr){
+        if(next == nullptr){
+            next = new Agenda(n,f,m);
+        }else{
+            next ->add(n,f,m, false);
+        }
+     return true;   
+    }else{
+        return false;
+    }
+}
+
+bool Agenda::modify(string n, string f, string m){
+    
+    if(name == n){
+        fijo =f;
+        movil =m;
+        return true;
+    }else{
+        Agenda* aux = buscar(n);
+        if(aux != nullptr){
+            aux->setM(m);
+            aux->setF(f);
+            return true;
+            
+        }else{
+            return false;
+        }
+    }
+}
+
+bool Agenda::eliminar(string n){
+    if(next){
+        if(next->eres(n)){
+            Agenda* aux = next->dameNext();
+            delete next;
+            next = aux;
+            return true;
+        }else{
+            return next->eliminar(n);
+            
+        }else{
+            return false;
+        }
+        
+    }
+    
+}
+
+
+
+
+
+
+string Agenda::getN() const
+{
+return n;
+}
+
+void Agenda::setN(const string &value)
+{
+n = value;
+}
+
+string Agenda::getF() const
+{
+return f;
+}
+
+void Agenda::setF(const string &value)
+{
+f = value;
+}
+
+string Agenda::getM() const
+{
+return m;
+}
+
+void Agenda::setM(const string &value)
+{
+m = value;
+}
