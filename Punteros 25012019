@@ -1,0 +1,31 @@
+ int *a =nullptr; //nullptr es para cuando un puntero no apunta a nada
+    a = new int {4};
+    a = new int {5};
+    cout <<*a<< endl;
+    delete a; //borra el espacio de 5 q se ha hecho antes
+    
+////////////////////////////////////////////////////////////////////////////////////////////////    
+////////////////////////////////////////////////////////////////////////////////////////////////  
+ 
+    int *b=nullptr;
+    int *a=nullptr;
+    a=new int {4};
+    b=a;
+    cout <<*a<<endl; //4
+    delete a;//borra 4 con lo cual b se queda apuntando a la nada
+    cout <<*b<<endl;//saca por pantalla cualquier cosa
+    
+////////////////////////////////////////////////////////////////////////////////////////////////    
+//////////////////////////////////////////////////////////////////////////////////////////////// 
+
+    lista simple -> vector
+    
+    vector<int>
+    int dato;
+    VectorInt *next;
+    VectorInt a(1);
+    a.push_back(3); //crea otro haciendo q el que tiene valor 1 no apunte a nullptr y apunte a 3, a su vez este de 3 apunta a nullptr
+    a.push_back(4); // lo mismo de antes
+    
+    
+    
