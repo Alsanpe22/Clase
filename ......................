@@ -1,0 +1,31 @@
+#ifndef PERSONA_H
+#define PERSONA_H
+#include <string>
+
+using namespace std;
+class Persona
+{
+public:
+    Persona();
+    
+    virtual void mostraredad();
+    virtual void mostrarocupacion();
+    virtual void mostrarnombre();
+    
+    int getEdad() const;
+    void setEdad(int value);
+    
+    string getNombre() const;
+    void setNombre(const string &value);
+    
+    string getOcupacion() const;
+    void setOcupacion(const string &value);
+    
+protected:
+    int edad;
+    string nombre;
+    string ocupacion;
+    
+};
+
+#endif // PERSONA_H
