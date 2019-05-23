@@ -1,0 +1,79 @@
+while(aux != 'x'){
+        switch(aux){
+        case 'm':
+            cout << "\nQue deseas hacer? "<< endl <<
+                    "(e) Anadir Estudiante. " << endl <<
+                    "(p) Anadir Profesor. " << endl <<
+                    "(a) Anadir Personal Administrativo. " << endl <<
+                    "(i) Imprimir la lista de personas. " << endl <<
+                    "(x) Salir.\n " << endl;
+            cin >> aux;
+            break;
+        case 'e':{
+            int grado;
+            vector<string> asig;
+            string seguir;
+            cout << "Introduce el nombre del estudiante: ";
+            cin >> nombre;
+            cout << "Introduce el dni del estudiante: ";
+            cin >> dni;
+            cout << "Introduce el grado que cursa: ";
+            cin >> grado;
+            cout << "Asignaturas que cursa: ";
+            while(seguir != "salir"){
+                cin >> seguir;
+                asig.push_back(seguir);
+            }
+            listaEstudiantes.push_back(new Estudiante(nombre, dni, grado, asig));
+
+            aux = 'm';
+            break;}
+
+        case 'p':{
+            int salario;
+            vector<string> asig;
+            string seguir;
+            cout << "Introduce el nombre del profesor: ";
+            cin >> nombre;
+            cout << "Introduce el dni del profesor: ";
+            cin >> dni;
+            cout << "Introduce el salario que gana: ";
+            cin >> salario;
+            cout << "Asignaturas que imparte: ";
+            while(seguir != "salir"){
+                cin >> seguir;
+                asig.push_back(seguir);
+            }
+            listaProfesores.push_back(new Profesor(nombre, dni, salario, asig));
+            aux = 'm';
+            break;}
+
+        case 'a':
+            int salar;
+            cout << "Introduce el nombre del personal administrativo: ";
+            cin >> nombre;
+            cout << "Introduce el dni del personal administrativo: ";
+            cin >> dni;
+            cout << "Introduce el salario que gana: ";
+            cin >> salar;
+            listaAdministrativos.push_back(new Administrativo(nombre, dni, salar));
+            aux = 'm';
+            break;
+
+        case 'i':
+            for(auto persona:listaProfesores){
+                persona->print();
+            }
+            for(auto persona:listaAdministrativos){
+                persona->print();
+            }
+            for(auto persona:listaEstudiantes){
+                persona->print();
+            }
+            aux ='m';
+            break;
+
+        default:
+            aux = 'x';
+        }
+    }
