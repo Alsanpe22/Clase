@@ -1,0 +1,43 @@
+#include "data.h"
+
+Data::Data(int fila, int columna):
+    fila{fila},
+    columna{columna}
+{
+
+}
+
+
+
+ostream &operator<<(ostream &os, const Data &d)
+{
+    os << " |periquito| " << " |perro   | " << "|paloma   |" << endl << " |tortuga  | " << " |gallina | " << "|lechuza  |"<<endl
+       <<" |canario  | " << " |gato    | " << "|delfin   |" << endl << " |orangutan| " << " |gamusino| " << "|garrapata|"<<endl;
+        return os;
+}
+//ostream& operator<<(ostream& os, Data const & t){
+
+ //   os<< "|3|" << "|2|" << "|4|" << endl << "|5|" << "|1|" << "|7|"<<endl;
+ //   return os;
+//}
+
+
+int Data::getColumna() const
+{
+    return columna;
+}
+
+int Data::getFila() const
+{
+    return fila;
+}
+
+void Data::setFila(int value)
+{
+    fila = value;
+}
+
+void Data::setColumna(int value)
+{
+    columna = value;
+}
