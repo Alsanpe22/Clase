@@ -1,0 +1,61 @@
+#include "table.h"
+
+Table::Table()
+{
+
+}
+
+
+
+int Table::findPosition(Data d)
+{
+
+    for(unsigned int i=1; i<lista.size(); i++){
+         //   Data x = lista.at(i);
+            if(d.getFila()==d.getFila() && d.getColumna()==d.getColumna()){
+                return i;
+            }
+        }
+        return -1;
+}
+
+bool Table::printNumeros(Data d)
+{    int pos=findPosition(d);
+     if(pos==-1){
+         return false;
+     }else{
+         cout << "|3|" << "|2|" << "|4|" << endl << "|5|" << "|1|" << "|7|"<<endl;
+         return true;
+     }
+
+}
+
+bool Table::printAnimales(Data d)
+{
+    int pos=findPosition(d);
+         if(pos==-1){
+             return false;
+         }else{
+             cout << " |periquito| " << " |perro   | " << "|paloma   |" << endl << " |tortuga  | " << " |gallina | " << "|lechuza  |"<<endl
+                  <<" |canario  | " << " |gato    | " << "|delfin   |" << endl << " |orangutan| " << " |gamusino| " << "|garrapata|"<<endl;
+         }
+         return true;
+}
+
+
+
+int Table::coordenadasGamusino(Data d1)
+  {
+        d1.setColumna(2);
+        d1.setFila(4);
+        cout << "El gamusino se encuentra en la posicion: " <<d1.getFila() <<","<<d1.getColumna() << endl;
+  }
+
+int Table::coordenadasSiete(Data d2)
+    {
+    d2.setColumna(2);
+    d2.setFila(3);
+    cout << "El 7 se encuentra en la posicion: " <<d2.getFila()<<","<<d2.getColumna() <<endl;
+    }
+
+
