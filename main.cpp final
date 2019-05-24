@@ -1,0 +1,37 @@
+#include <iostream>
+#include <table.h>
+#include <data.h>
+using namespace std;
+
+int main()
+{   int fila,columna;
+    Table tabla;
+    Data data(fila,columna);
+
+    cout << "=================================================================="<<endl;
+    cout<<" Tabla de animales: " << endl;
+    tabla.printAnimales(data);
+    cout << "=================================================================="<<endl;
+    cout << "Tabla de numeros: " << endl;
+    tabla.printNumeros(data);
+    cout << "=================================================================="<<endl;
+    tabla.coordenadasGamusino(data);
+    cout << "=================================================================="<<endl;
+    tabla.coordenadasSiete(data);
+    cout << "=================================================================="<<endl;
+
+
+
+
+
+
+
+
+
+
+
+
+        return 0;
+    }
+
+
