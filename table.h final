@@ -1,0 +1,30 @@
+#ifndef TABLE_H
+#define TABLE_H
+#include <iostream>
+#include <data.h>
+#include <vector>
+using namespace std;
+
+class Table
+{
+public:
+    Table();
+    int findPosition(Data d);
+    bool printNumeros(Data d);
+    bool printAnimales(Data d);
+    int coordenadasGamusino(Data d1);
+    int coordenadasSiete(Data d2);
+private:
+
+    vector<int>lista={3,2,4,
+                      5,1,7};
+    vector<string>animales={" |periquito| " , " |perro| " , "|paloma|" , " |tortuga| " , " |gallina| " , "|lechuza|",
+                         " |canario| " , " |gato| ", "|delfin|" , " |orangutan| " , " |gamusino| " , "|garrapata|"};
+
+};
+
+
+
+
+
+#endif // TABLE_H
